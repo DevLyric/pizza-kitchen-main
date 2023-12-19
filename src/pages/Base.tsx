@@ -38,16 +38,13 @@ function Base() {
       <div className="w-full max-w-xl">
         <h1 className="text-3xl font-semibold">Choose your pizza base:</h1>
 
-        <div className="my-5">
+        <div className="flex flex-col gap-2 my-5">
           {bases.map((base) => (
             <div
-              onClick={() => handleAddBase(base.label)}
               key={base.id}
-              className={`border-4 border-dashed w-max font-medium cursor-pointer ${
-                selectedBase === base.label
-                  ? "border-orange-500 text-orange-500"
-                  : "border-transparent"
-              }`}
+              tabIndex={0}
+              onClick={() => handleAddBase(base.label)}
+              className={`w-max text-lg px-1 font-medium cursor-pointer focus:text-orange-500 focus:border-[3px] focus:border-orange-500 focus:border-dashed`}
             >
               {base.label}
             </div>
