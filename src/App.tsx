@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import Base from "./pages/Base";
 import Toppings from "./pages/Toppings";
+import Finish from "./pages/Finish";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/base" element={<Base />} />
         <Route path="/toppings" element={<Toppings />} />
+        <Route path="/finish" element={<Finish />} />
       </Routes>
     </Router>
   );
