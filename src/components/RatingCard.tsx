@@ -40,7 +40,7 @@ function RatingCard() {
           </button>
         </div>
       ) : (
-        <div className="w-96 h-96 p-6 bg-white rounded-3xl">
+        <div className="w-96 p-6 bg-white rounded-3xl">
           <div className="h-12 w-12 flex items-center justify-center rounded-full bg-[#e5e7ea]">
             <img src={star} alt="" />
           </div>
