@@ -12,7 +12,7 @@ function RatingCard() {
   const [isSubmitted, setISsubmitted] = useState(false);
 
   return (
-    <div className="absolute top-0 w-full h-screen flex items-center justify-center bg-[#303030]/90">
+    <div className="absolute top-0 w-full h-screen flex items-center justify-center bg-[#303030]/90 px-6">
       {isSubmitted ? (
         <div className="w-96 h-96 p-6 text-center bg-white rounded-3xl">
           <div className="flex justify-center my-3">
@@ -25,7 +25,7 @@ function RatingCard() {
 
           <h1 className="text-center text-2xl font-medium my-3">Thank You</h1>
 
-          <p className="font-medium text-[#969fad]">
+          <p className="font-medium text-sm sm:text-base text-[#969fad]">
             We appreciate you taking the time to give a rating. If you have a
             question or feedback, don't hesitate to get in touch!
           </p>
