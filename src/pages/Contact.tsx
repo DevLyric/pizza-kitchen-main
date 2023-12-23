@@ -1,11 +1,5 @@
 import { useState } from "react";
-
-interface FormDataProps {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+import { FormDataProps } from "../@types/formData";
 
 function Contact() {
   const [formData, setFormData] = useState<FormDataProps>({
