@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import RatingCard from "../components/RatingCard";
-import pizza1 from "../assets/images/pizza-dark-1.png";
-import pizza2 from "../assets/images/pizza-dark-2.png";
-import pizza3 from "../assets/images/pizza-dark-3.png";
-import pizza4 from "../assets/images/pizza-dark-4.png";
+import { pizzaImages } from "../constants/images";
 import arrow from "../assets/images/up-arrow-black.png";
 
 function Finish() {
@@ -13,25 +10,6 @@ function Finish() {
   const selectedToppings = location.state.selectedToppings;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showRating, setShowRating] = useState(false);
-
-  const pizzaImages = [
-    {
-      id: 1,
-      url: pizza1,
-    },
-    {
-      id: 2,
-      url: pizza2,
-    },
-    {
-      id: 3,
-      url: pizza3,
-    },
-    {
-      id: 4,
-      url: pizza4,
-    },
-  ];
 
   useEffect(() => {
     setTimeout(() => {
@@ -57,7 +35,7 @@ function Finish() {
           A pizza with {selectedBase} base and the following toppings:{" "}
           {selectedToppings.join(", ")}.
         </p>
-        <div className="flex items-center justify-center my-10">
+        <div className="flex items-center justify-center h-32 my-10">
           {pizzaImages.map((pizza, index) => (
             <img
               key={index}
@@ -70,7 +48,7 @@ function Finish() {
             />
           ))}
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between tracking-wider">
           <img src={arrow} width={100} alt="" />
           <p>
             If you got a minute, tell us{" "}
