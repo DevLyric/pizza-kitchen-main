@@ -71,7 +71,7 @@ function Header() {
         </div>
       </div>
       {showSidebar && (
-        <div className="absolute top-0 right-0 h-screen w-2/3 bg-orange-500 z-50">
+        <div className="absolute top-0 right-0 h-screen w-2/3 bg-orange-500 z-40">
           <div className="flex flex-col gap-8 mt-52 mx-8">
             <Link
               to="/contact"
