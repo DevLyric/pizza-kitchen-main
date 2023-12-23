@@ -3,18 +3,18 @@ import { Base } from "../@types/base";
 export const bases: Base[] = [
   {
     id: 1,
-    label: "Classic",
+    label: "classic",
   },
   {
     id: 2,
-    label: "Thin",
+    label: "thin",
   },
   {
     id: 3,
-    label: "Stuffed",
+    label: "stuffed",
   },
   {
     id: 4,
-    label: "Chicago-style",
+    label: "chicago-style",
   },
 ];
