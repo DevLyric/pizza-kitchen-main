@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import RatingCard from "../components/RatingCard";
 import pizza1 from "../assets/images/pizza-dark-1.png";
 import pizza2 from "../assets/images/pizza-dark-2.png";
 import pizza3 from "../assets/images/pizza-dark-3.png";
 import pizza4 from "../assets/images/pizza-dark-4.png";
 import arrow from "../assets/images/up-arrow-black.png";
-import RatingCard from "../components/RatingCard";
 
 function Finish() {
+  const location = useLocation();
+  const selectedBase = location.state.selectedBase;
+  const selectedToppings = location.state.selectedToppings;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showRating, setShowRating] = useState(false);
 
@@ -50,8 +54,8 @@ function Finish() {
         </h1>
         <p className="text-2xl pb-2">You ordered:</p>
         <p className="tracking-wider">
-          A pizza with chicago-style base and the following toppings: parma ham,
-          pepperoni, extra cheese.
+          A pizza with {selectedBase} base and the following toppings:{" "}
+          {selectedToppings.join(", ")}.
         </p>
         <div className="flex items-center justify-center my-10">
           {pizzaImages.map((pizza, index) => (

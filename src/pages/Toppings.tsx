@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { toppings } from "../constants/toppings";
 
 function Toppings() {
+  const location = useLocation();
+  const selectedBase = location.state.selectedBase;
   const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
 
   function handleAddToppings(topping: string) {
@@ -35,7 +37,7 @@ function Toppings() {
           ))}
         </div>
         {selectedToppings.length >= 3 && (
-          <Link to="/finish">
+          <Link to="/finish" state={{ selectedBase, selectedToppings }}>
             <button
               style={{ fontSize: "clamp(.75rem, 2.5vw, 1rem)" }}
               className="w-full py-5 rounded-full font-semibold text-white bg-orange-500

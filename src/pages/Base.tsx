@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { bases } from "../constants/bases";
 
 function Base() {
-  const [selectedBase, setSelectedBase] = useState<string>("");
+  const [selectedBase, setSelectedBase] = useState("");
 
   function handleAddBase(base: string) {
     setSelectedBase(base);
@@ -22,12 +22,12 @@ function Base() {
               onClick={() => handleAddBase(base.label)}
               className={`w-max text-lg px-1 font-medium cursor-pointer focus:text-orange-500 focus:border-[3px] focus:border-orange-500 focus:border-dashed`}
             >
-              {base.label}
+              {base.label.charAt(0).toUpperCase() + base.label.slice(1)}
             </div>
           ))}
         </div>
         {selectedBase && (
-          <Link to="/toppings">
+          <Link to="/toppings" state={{ selectedBase }}>
             <button
               style={{ fontSize: "clamp(.75rem, 2.5vw, 1rem)" }}
               className="w-full py-5 rounded-full font-semibold text-white bg-orange-500
