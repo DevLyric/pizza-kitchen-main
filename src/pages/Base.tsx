@@ -1,37 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-type Base = {
-  id: number;
-  label: string;
-};
+import { bases } from "../constants/bases";
 
 function Base() {
   const [selectedBase, setSelectedBase] = useState<string>("");
 
-  const bases: Base[] = [
-    {
-      id: 1,
-      label: "Classic",
-    },
-    {
-      id: 2,
-      label: "Thin",
-    },
-    {
-      id: 3,
-      label: "Stuffed",
-    },
-    {
-      id: 4,
-      label: "Chicago-style",
-    },
-  ];
-
   function handleAddBase(base: string) {
     setSelectedBase(base);
   }
-  console.log(selectedBase);
 
   return (
     <div className="flex justify-center mt-28 px-6">
