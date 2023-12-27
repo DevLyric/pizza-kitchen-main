@@ -4,8 +4,11 @@ import facebook from "../assets/images/icon-facebook.svg";
 import twitter from "../assets/images/icon-twitter.svg";
 import instagram from "../assets/images/icon-instagram.svg";
 import pinterest from "../assets/images/icon-pinterest.svg";
+import Popup from "../components/Popup";
+import { useNavigate } from "react-router-dom";
 
 function Contact() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormDataProps>({
     name: "",
     email: "",
@@ -14,6 +17,7 @@ function Contact() {
   });
 
   const [focusedInput, setFocusedInput] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
 
   function handleFocus(field: string) {
     setFocusedInput(field);
@@ -21,7 +25,10 @@ function Contact() {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    console.log("working");
+    setShowPopup(true);
+    setTimeout(() => {
+      navigate("/");
+    }, 2500);
   }
 
   return (
@@ -210,6 +217,7 @@ function Contact() {
           />
         </div>
       </footer>
+      {showPopup && <Popup name={formData.name} />}
     </div>
   );
 }
