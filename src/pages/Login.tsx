@@ -1,7 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { FormEvent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../config/firebase-config";
 
 function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,12 +16,23 @@ function Login() {
     setFocusedInput(field);
   }
 
+  async function login(event: FormEvent) {
+    event.preventDefault();
+
+    try {
+      await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      navigate("/");
+    } catch {
+      console.log("error");
+    }
+  }
+
   return (
     <div className="flex justify-center mt-32">
       <div className="w-full max-w-xl px-6">
         <h1 className="text-3xl text-center font-bold py-8">LOGIN</h1>
 
-        <form action="" className="flex flex-col gap-6">
+        <form action="" onSubmit={login} className="flex flex-col gap-6">
           <div
             className={`relative border-[3px] border-dashed rounded ${
               focusedInput === "email" || formData.email
@@ -70,7 +84,7 @@ function Login() {
             </label>
             <input
               id="password"
-              type="text"
+              type="password"
               className="w-full p-4 border-2 border-black rounded outline-none"
               value={formData.password}
               onChange={(e) =>
