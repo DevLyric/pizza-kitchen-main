@@ -6,6 +6,7 @@ import Toppings from "./pages/Toppings";
 import Finish from "./pages/Finish";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/finish" element={<Finish />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );

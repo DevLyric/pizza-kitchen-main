@@ -3,4 +3,5 @@ export interface FormDataProps {
   email: string;
   subject: string;
   message: string;
+  password?: string;
 }
