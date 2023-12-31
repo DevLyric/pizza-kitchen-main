@@ -2,6 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase-config";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 function Login() {
   const navigate = useNavigate();
@@ -9,6 +10,8 @@ function Login() {
     email: "",
     password: "",
   });
+
+  const { setItem } = useLocalStorage("value");
 
   const [focusedInput, setFocusedInput] = useState("");
 
@@ -21,6 +24,8 @@ function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      const userEmail = formData.email;
+      setItem(userEmail);
       navigate("/");
     } catch {
       console.log("error");
