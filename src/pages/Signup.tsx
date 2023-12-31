@@ -1,7 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { FormEvent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../config/firebase-config";
 
 function Signup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,12 +17,27 @@ function Signup() {
     setFocusedInput(field);
   }
 
+  async function register(event: FormEvent) {
+    event.preventDefault();
+
+    try {
+      await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+      navigate("/login");
+    } catch {
+      console.log("error");
+    }
+  }
+
   return (
     <div className="flex justify-center mt-32">
       <div className="w-full max-w-xl px-6">
         <h1 className="text-3xl text-center font-bold py-8">SIGNUP</h1>
 
-        <form action="" className="flex flex-col gap-6">
+        <form action="" onSubmit={register} className="flex flex-col gap-6">
           <div
             className={`relative border-[3px] border-dashed rounded ${
               focusedInput === "email" || formData.email
@@ -71,7 +89,7 @@ function Signup() {
             </label>
             <input
               id="password"
-              type="text"
+              type="password"
               className="w-full p-4 border-2 border-black rounded outline-none"
               value={formData.password}
               onChange={(e) =>
@@ -107,7 +125,7 @@ function Signup() {
             </label>
             <input
               id="passwordConfirmation"
-              type="text"
+              type="password"
               className="w-full p-4 border-2 border-black rounded outline-none"
               value={formData.passwordConfirmation}
               onChange={(e) =>
@@ -123,7 +141,10 @@ function Signup() {
             />
           </div>
 
-          <button className="bg-orange-500 w-32 py-2 rounded self-center">
+          <button
+            type="submit"
+            className="bg-orange-500 w-32 py-2 rounded self-center"
+          >
             Signup
           </button>
 
