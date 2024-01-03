@@ -5,9 +5,11 @@ import useSidebar from "../hooks/useSidebar";
 import { useTheme } from "../context/ThemeContext";
 import logo from "../assets/images/logo.svg";
 import moon from "../assets/images/icon-moon.svg";
+import sun from "../assets/images/icon-sun.svg";
 import hamburger from "../assets/images/icon-hamburger.svg";
+import close from "../assets/images/icon-close.svg";
 
-function Header() {
+export default function Header() {
   const themeCtx = useTheme();
   const { showSidebar, toggleSidebar } = useSidebar();
 
@@ -15,7 +17,12 @@ function Header() {
     <header className="flex items-center h-24 shadow-md px-5">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <img src={logo} width={50} alt="" />
+          <img
+            className={`${themeCtx?.darkMode === "dark" ? "invert" : ""}`}
+            src={logo}
+            width={50}
+            alt=""
+          />
           <Link
             to="/"
             className="pt-3 tracking-wider font-medium hover:text-orange-500"
@@ -29,15 +36,17 @@ function Header() {
           </div>
           <img
             onClick={themeCtx?.toggleTheme}
-            src={moon}
             className="cursor-pointer z-50"
+            src={themeCtx?.darkMode === "dark" ? sun : moon}
             width={28.2}
             alt=""
           />
           <img
             onClick={toggleSidebar}
-            src={hamburger}
-            className="cursor-pointer z-50 lg:hidden"
+            className={`cursor-pointer w-6 z-50 lg:hidden ${
+              themeCtx?.darkMode === "dark" ? "invert" : ""
+            }`}
+            src={showSidebar ? close : hamburger}
             alt=""
           />
         </div>
@@ -46,5 +55,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

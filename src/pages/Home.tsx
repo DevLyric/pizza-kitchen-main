@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 function Home() {
+  const themeCtx = useTheme();
+
   return (
-    <div className="home flex justify-center mt-28 px-6 bg-ingredients-light">
+    <div
+      className={`home flex justify-center mt-28 px-6 ${
+        themeCtx?.darkMode === "dark"
+          ? "bg-ingredients-dark"
+          : "bg-ingredients-light"
+      }`}
+    >
       <div className="max-w-xl">
         <h1
           style={{
