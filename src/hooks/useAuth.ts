@@ -20,15 +20,14 @@ function useAuth(): AuthHook {
     const checkAuthentication = () => {
       const token = localStorage.getItem("token");
 
-      if (token) {
-        setAuthState({ ...authState, isAuthenticated: true });
-      } else {
-        setAuthState({ ...authState, isAuthenticated: false });
-      }
+      setAuthState((prevState) => ({
+        ...prevState,
+        isAuthenticated: Boolean(token),
+      }));
     };
 
     checkAuthentication();
-  }, [authState]);
+  }, []);
 
   function loginAuth() {
     // Lógica de autenticação, por exemplo, salvar o token no localStorage
