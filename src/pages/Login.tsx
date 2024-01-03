@@ -26,6 +26,7 @@ function Login() {
       loginAuth();
       localStorage.setItem("email", formData.email);
       navigate("/");
+      window.location.reload();
     } catch {
       logoutAuth();
       localStorage.removeItem("email");
