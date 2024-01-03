@@ -4,9 +4,11 @@ import logo from "../assets/images/logo.svg";
 import moon from "../assets/images/icon-moon.svg";
 import hamburger from "../assets/images/icon-hamburger.svg";
 import useAuth from "../hooks/useAuth";
+import { useTheme } from "../context/ThemeContext";
 
 function Header() {
   const user = localStorage.getItem("email");
+  const themeCtx = useTheme();
   const { isAuthenticated, logoutAuth } = useAuth();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -93,7 +95,13 @@ function Header() {
               </>
             )}
           </div>
-          <img src={moon} className="cursor-pointer z-50" width={28.2} alt="" />
+          <img
+            onClick={themeCtx?.toggleTheme}
+            src={moon}
+            className="cursor-pointer z-50"
+            width={28.2}
+            alt=""
+          />
           <img
             onClick={toggleSidebar}
             src={hamburger}

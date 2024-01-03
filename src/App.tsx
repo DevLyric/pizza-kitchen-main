@@ -8,21 +8,24 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ThemeProvider from "./context/ThemeContext";
 
 function App() {
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/base" element={<Base />} />
-        <Route path="/toppings" element={<Toppings />} />
-        <Route path="/finish" element={<Finish />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
+      <ThemeProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/base" element={<Base />} />
+          <Route path="/toppings" element={<Toppings />} />
+          <Route path="/finish" element={<Finish />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </ThemeProvider>
     </Router>
   );
 }

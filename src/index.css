@@ -8,6 +8,16 @@ body {
   font-family: "Overpass", sans-serif;
 }
 
+body.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+body.light-mode {
+  background-color: white;
+  color: black;
+}
+
 .home {
   background-repeat: repeat-x;
   background-position: bottom 1.5rem left 1.5rem;
