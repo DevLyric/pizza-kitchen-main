@@ -1,36 +1,15 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import NavigationRoutes from "./NavigationRoutes";
+import Sidebar from "./Sidebar";
+import useSidebar from "../hooks/useSidebar";
+import { useTheme } from "../context/ThemeContext";
 import logo from "../assets/images/logo.svg";
 import moon from "../assets/images/icon-moon.svg";
 import hamburger from "../assets/images/icon-hamburger.svg";
-import { useTheme } from "../context/ThemeContext";
-import NavigationRoutes from "./NavigationRoutes";
-import Sidebar from "./Sidebar";
 
 function Header() {
   const themeCtx = useTheme();
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [showSidebar, setShowSidebar] = useState(false);
-
-  useEffect(() => {
-    function changeWidth() {
-      setScreenWidth(window.innerWidth);
-    }
-
-    window.addEventListener("resize", changeWidth);
-
-    if (screenWidth > 1024) {
-      setShowSidebar(false);
-    }
-
-    return () => {
-      window.removeEventListener("resize", changeWidth);
-    };
-  }, [screenWidth]);
-
-  function toggleSidebar() {
-    setShowSidebar((current) => !current);
-  }
+  const { showSidebar, toggleSidebar } = useSidebar();
 
   return (
     <header className="flex items-center h-24 shadow-md px-5">
