@@ -30,20 +30,14 @@ function useAuth(): AuthHook {
   }, []);
 
   function loginAuth() {
-    // Lógica de autenticação, por exemplo, salvar o token no localStorage
     localStorage.setItem("token", "seu_token_aqui");
-
-    // Atualizar o estado de autenticação
     setAuthState({
       isAuthenticated: true,
     });
   }
 
   function logoutAuth() {
-    // Lógica para deslogar, por exemplo, remover o token do localStorage
     localStorage.removeItem("token");
-
-    // Atualizar o estado de autenticação
     setAuthState({
       isAuthenticated: false,
     });
