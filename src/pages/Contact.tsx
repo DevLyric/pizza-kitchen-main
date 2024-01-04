@@ -6,6 +6,7 @@ import instagram from "../assets/images/icon-instagram.svg";
 import pinterest from "../assets/images/icon-pinterest.svg";
 import Popup from "../components/Popup";
 import { useNavigate } from "react-router-dom";
+import { InputField } from "../components/InputField";
 
 function Contact() {
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ function Contact() {
 
   const [focusedInput, setFocusedInput] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData({ ...formData, [field]: value });
+  };
 
   function handleFocus(field: string) {
     setFocusedInput(field);
@@ -42,125 +47,42 @@ function Contact() {
         </p>
 
         <form action="" onSubmit={handleSubmit} className="flex flex-col gap-6">
-          <div
-            className={`relative border-[3px] border-dashed rounded ${
-              focusedInput === "name" || formData.name
-                ? "border-orange-500"
-                : "border-transparent"
-            }`}
-          >
-            <label
-              htmlFor="name"
-              className={`absolute left-4 transform -translate-y-1/2 text-orange-500 tracking-wider bg-white font-medium
-               ${focusedInput === "name" || formData.name ? "" : "top-1/2"}
-               `}
-            >
-              First Name:
-            </label>
-            <input
-              id="name"
-              type="text"
-              className="w-full p-4 border-2 border-black rounded outline-none"
-              value={formData.name}
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
-              onFocus={() => handleFocus("name")}
-              onBlur={() => setFocusedInput("")}
-              autoComplete="off"
-              required
-            />
-          </div>
-          <div
-            className={`relative border-[3px] border-dashed rounded ${
-              focusedInput === "email" || formData.email
-                ? "border-orange-500"
-                : "border-transparent"
-            }`}
-          >
-            <label
-              htmlFor="email"
-              className={`absolute left-4 transform -translate-y-1/2 text-orange-500 tracking-wider bg-white font-medium
-               ${focusedInput === "email" || formData.email ? "" : "top-1/2"}
-               `}
-            >
-              Email:
-            </label>
-            <input
-              id="email"
-              type="email"
-              className="w-full p-4 border-2 border-black rounded outline-none"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-              onFocus={() => handleFocus("email")}
-              onBlur={() => setFocusedInput("")}
-              autoComplete="off"
-              required
-            />
-          </div>
-          <div
-            className={`relative border-[3px] border-dashed rounded ${
-              focusedInput === "subject" || formData.subject
-                ? "border-orange-500"
-                : "border-transparent"
-            }`}
-          >
-            <label
-              htmlFor="subject"
-              className={`absolute left-4 transform -translate-y-1/2 text-orange-500 tracking-wider bg-white font-medium
-               ${
-                 focusedInput === "subject" || formData.subject ? "" : "top-1/2"
-               }
-               `}
-            >
-              Subject:
-            </label>
-            <input
-              id="subject"
-              type="text"
-              className="w-full p-4 border-2 border-black rounded outline-none"
-              value={formData.subject}
-              onChange={(e) =>
-                setFormData({ ...formData, subject: e.target.value })
-              }
-              onFocus={() => handleFocus("subject")}
-              onBlur={() => setFocusedInput("")}
-              autoComplete="off"
-              required
-            />
-          </div>
-          <div
-            className={`relative flex border-[3px] border-dashed rounded ${
-              focusedInput === "message" || formData.message
-                ? "border-orange-500"
-                : "border-transparent"
-            }`}
-          >
-            <label
-              htmlFor="message"
-              className={`absolute left-4 transform -translate-y-1/2 text-orange-500 tracking-wider bg-white font-medium
-               ${
-                 focusedInput === "message" || formData.message ? "" : "top-1/2"
-               }
-               `}
-            >
-              Message:
-            </label>
-            <textarea
-              id="message"
-              className="w-full p-4 border-2 border-black rounded outline-none"
-              value={formData.message}
-              onChange={(e) =>
-                setFormData({ ...formData, message: e.target.value })
-              }
-              onFocus={() => handleFocus("message")}
-              onBlur={() => setFocusedInput("")}
-              autoComplete="off"
-              required
-            />
-          </div>
+          <InputField
+            label="First Name:"
+            field="name"
+            value={formData.name}
+            handleInputChange={handleInputChange}
+            handleFocus={handleFocus}
+            focusedInput={focusedInput}
+            type="text"
+          />
+          <InputField
+            label="Email:"
+            field="email"
+            value={formData.email}
+            handleInputChange={handleInputChange}
+            handleFocus={handleFocus}
+            focusedInput={focusedInput}
+            type="email"
+          />
+          <InputField
+            label="Subject:"
+            field="subject"
+            value={formData.subject}
+            handleInputChange={handleInputChange}
+            handleFocus={handleFocus}
+            focusedInput={focusedInput}
+            type="text"
+          />
+          <InputField
+            label="Message:"
+            field="message"
+            value={formData.message}
+            handleInputChange={handleInputChange}
+            handleFocus={handleFocus}
+            focusedInput={focusedInput}
+            type="textarea"
+          />
           <button className="self-center sm:self-start py-2 w-28 rounded font-medium bg-orange-500">
             Send
           </button>
