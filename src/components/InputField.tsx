@@ -1,4 +1,4 @@
-import React from "react";
+import { useTheme } from "../context/ThemeContext";
 
 type InputFieldProps = {
   label: string;
@@ -10,7 +10,7 @@ type InputFieldProps = {
   type: "text" | "email" | "textarea"; // Adiciona o tipo "textarea"
 };
 
-export const InputField: React.FC<InputFieldProps> = ({
+export const InputField = ({
   label,
   field,
   value,
@@ -18,7 +18,9 @@ export const InputField: React.FC<InputFieldProps> = ({
   handleFocus,
   focusedInput,
   type,
-}) => {
+}: InputFieldProps) => {
+  const themeCtx = useTheme();
+
   return (
     <div
       className={`relative flex border-[3px] border-dashed rounded ${
@@ -31,7 +33,7 @@ export const InputField: React.FC<InputFieldProps> = ({
         htmlFor={field}
         className={`absolute left-4 transform -translate-y-1/2 text-orange-500 tracking-wider bg-white font-medium
              ${focusedInput === field || value ? "" : "top-1/2"}
-             `}
+             ${themeCtx?.darkMode === "dark" ? "bg-black" : "bg-white"}`}
       >
         {label}
       </label>
@@ -39,7 +41,8 @@ export const InputField: React.FC<InputFieldProps> = ({
       {type === "textarea" ? (
         <textarea
           id={field}
-          className="w-full p-4 border-2 border-black rounded outline-none"
+          className={`w-full p-4 border-2 bg-transparent border-black rounded outline-none
+          ${themeCtx?.darkMode === "dark" ? "border-white" : ""}`}
           value={value}
           onChange={(e) => handleInputChange(field, e.target.value)}
           onFocus={() => handleFocus(field)}
@@ -51,7 +54,9 @@ export const InputField: React.FC<InputFieldProps> = ({
         <input
           id={field}
           type={type}
-          className="w-full p-4 border-2 border-black rounded outline-none"
+          className={`w-full p-4 border-2 bg-transparent border-black rounded outline-none ${
+            themeCtx?.darkMode === "dark" ? "border-white" : ""
+          }`}
           value={value}
           onChange={(e) => handleInputChange(field, e.target.value)}
           onFocus={() => handleFocus(field)}

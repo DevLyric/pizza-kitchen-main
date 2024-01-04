@@ -7,9 +7,11 @@ import pinterest from "../assets/images/icon-pinterest.svg";
 import Popup from "../components/Popup";
 import { useNavigate } from "react-router-dom";
 import { InputField } from "../components/InputField";
+import { useTheme } from "../context/ThemeContext";
 
 function Contact() {
   const navigate = useNavigate();
+  const themeCtx = useTheme();
   const [formData, setFormData] = useState<FormDataProps>({
     name: "",
     email: "",
@@ -83,7 +85,14 @@ function Contact() {
             focusedInput={focusedInput}
             type="textarea"
           />
-          <button className="self-center sm:self-start py-2 w-28 rounded font-medium bg-orange-500">
+          <button
+            className={`self-center sm:self-start py-2 w-28 rounded font-medium bg-orange-500
+          ${
+            themeCtx?.darkMode === "dark"
+              ? "hover:bg-white hover:text-orange-500"
+              : "hover:bg-black hover:text-orange-500"
+          }`}
+          >
             Send
           </button>
         </form>
