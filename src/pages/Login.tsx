@@ -3,9 +3,11 @@ import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase-config";
 import useAuth from "../hooks/useAuth";
+import { useTheme } from "../context/ThemeContext";
 
 function Login() {
   const navigate = useNavigate();
+  const themeCtx = useTheme();
   const { loginAuth, logoutAuth } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
@@ -51,14 +53,15 @@ function Login() {
               htmlFor="email"
               className={`absolute left-4 transform -translate-y-1/2 text-orange-500 tracking-wider bg-white font-medium
                ${focusedInput === "email" || formData.email ? "" : "top-1/2"}
-               `}
+               ${themeCtx?.darkMode === "dark" ? "bg-black" : "bg-white"}`}
             >
               Email:
             </label>
             <input
               id="email"
               type="text"
-              className="w-full p-4 border-2 border-black rounded outline-none"
+              className={`w-full p-4 border-2 bg-transparent border-black rounded outline-none
+          ${themeCtx?.darkMode === "dark" ? "border-white" : ""}`}
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
@@ -85,14 +88,15 @@ function Login() {
                    ? ""
                    : "top-1/2"
                }
-               `}
+               ${themeCtx?.darkMode === "dark" ? "bg-black" : "bg-white"}`}
             >
               Password:
             </label>
             <input
               id="password"
               type="password"
-              className="w-full p-4 border-2 border-black rounded outline-none"
+              className={`w-full p-4 border-2 bg-transparent border-black rounded outline-none
+          ${themeCtx?.darkMode === "dark" ? "border-white" : ""}`}
               value={formData.password}
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
@@ -104,7 +108,14 @@ function Login() {
             />
           </div>
 
-          <button className="bg-orange-500 w-32 py-2 rounded self-center">
+          <button
+            type="submit"
+            className={`bg-orange-500 w-32 py-2 rounded self-center ${
+              themeCtx?.darkMode === "dark"
+                ? "hover:bg-white hover:text-orange-500"
+                : "hover:bg-black hover:text-orange-500"
+            }`}
+          >
             Login
           </button>
 

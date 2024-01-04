@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import RatingCard from "../components/RatingCard";
+import { useTheme } from "../context/ThemeContext";
 import { pizzaImages } from "../constants/images";
 import arrow from "../assets/images/up-arrow-black.png";
 
 function Finish() {
   const location = useLocation();
+  const themeCtx = useTheme();
   const selectedBase = location.state.selectedBase;
   const selectedToppings = location.state.selectedToppings;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -39,6 +41,7 @@ function Finish() {
           {pizzaImages.map((pizza, index) => (
             <img
               key={index}
+              className={`${themeCtx?.darkMode === "dark" ? "invert" : ""}`}
               src={pizza.url}
               alt=""
               loading="lazy"
@@ -49,7 +52,12 @@ function Finish() {
           ))}
         </div>
         <div className="flex items-center justify-between tracking-wider">
-          <img src={arrow} width={100} alt="" />
+          <img
+            className={`${themeCtx?.darkMode === "dark" ? "invert" : ""}`}
+            src={arrow}
+            width={100}
+            alt=""
+          />
           <p>
             If you got a minute, tell us{" "}
             <button
@@ -61,7 +69,14 @@ function Finish() {
               how we did!
             </button>
           </p>
-          <img src={arrow} className="-scale-x-100" width={100} alt="" />
+          <img
+            className={`-scale-x-100 ${
+              themeCtx?.darkMode === "dark" ? "invert" : ""
+            }`}
+            src={arrow}
+            width={100}
+            alt=""
+          />
         </div>
       </div>
       {showRating && <RatingCard />}
